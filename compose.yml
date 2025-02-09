@@ -43,7 +43,7 @@ services:
         image: mysql:8.0
         container_name: external-server-init-mysql
         environment:
-            MYSQL_ROOT_PASSWORD: $API_SERVER_DB_ROOT_PASSWORD
+            MYSQL_ROOT_PASSWORD: $TEMPLATE_DB_ROOT_PASSWORD
         volumes:
           - "./.docker/local/scripts/init-external-db.sh:/init-external-db.sh"
         entrypoint: ["/bin/bash", "-c", "chmod +x /init-external-db.sh && /init-external-db.sh"]
