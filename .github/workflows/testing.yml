@@ -77,7 +77,7 @@ jobs:
       - name: Checkout template_api_server repository
         uses: actions/checkout@v4
         with:
-          repository: yusuke-takatsu/template_api_server
+          repository: yusuke-takatsu/template-api-server
           path: ./template_api_server
           ssh-key: ${{ secrets.DEPLOY_KEY_TEMPLATE_API_SERVER }}
 
