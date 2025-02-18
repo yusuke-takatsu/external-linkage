@@ -16,8 +16,6 @@ jobs:
           MYSQL_USER: external_server_test
           MYSQL_PASSWORD: root
           MYSQL_ROOT_PASSWORD: root
-        volumes:
-          - ${{ github.workspace }}/.github/workflows/set-up-test-db.sql:/docker-entrypoint-initdb.d/set-up-test-db.sql
         options: >-
           --health-cmd="mysqladmin ping"
           --health-interval=10s
@@ -72,6 +70,9 @@ jobs:
 
       - name: Generate key
         run: php artisan key:generate
+
+      - name: Set up template_api_server_test database
+        run: mysql -h 127.0.0.1 -u root -proot < .github/workflows/set-up-test-db.sql
 
       - name: Checkout template_api_server repository
         uses: actions/checkout@v4
