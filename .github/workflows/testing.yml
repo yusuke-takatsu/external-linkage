@@ -96,7 +96,7 @@ jobs:
       - name: Migrate template-api-server
         run: |
           cd template-api-server
-          php artisan migrate --database=${{ env.TEMPLATE_DB_DATABASE }}
+          DB_DATABASE=${{ env.TEMPLATE_DB_DATABASE }} php artisan migrate
 
       - name: Run database migrations
         run: php artisan migrate
