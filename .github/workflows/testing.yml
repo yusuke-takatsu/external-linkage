@@ -29,11 +29,11 @@ jobs:
       DB_DATABASE: external_server_test
       DB_USERNAME: root
       DB_PASSWORD: root
-      TEMPLATE_SERVER_DB_HOST: 127.0.0.1
-      TEMPLATE_SERVER_DB_PORT: 3306
-      TEMPLATE_SERVER_DB_DATABASE: template_server_test
-      TEMPLATE_SERVER_DB_USERNAME: root
-      TEMPLATE_SERVER_DB_PASSWORD: root
+      TEMPLATE_DB_HOST: 127.0.0.1
+      TEMPLATE_DB_PORT: 3306
+      TEMPLATE_DB_DATABASE: template_server_test
+      TEMPLATE_DB_USERNAME: root
+      TEMPLATE_DB_PASSWORD: root
       REDIS_HOST: 127.0.0.1
       REDIS_PORT: 6379
 
