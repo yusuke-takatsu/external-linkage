@@ -82,6 +82,11 @@ jobs:
         run: |
           cd template-api-server
           composer install --no-interaction --prefer-dist
+      
+      - name: Copy .env
+        run: |
+          cd template-api-server
+          php -r "file_exists('.env') || copy('.env.example', '.env');"
 
       - name: Key generate (template-api-server)
         run: |
