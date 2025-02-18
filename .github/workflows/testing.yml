@@ -17,7 +17,7 @@ jobs:
           MYSQL_PASSWORD: root
           MYSQL_ROOT_PASSWORD: root
         volumes:
-          - .github/workflows/set-up-test-db.sql:/docker-entrypoint-initdb.d/set-up-test-db.sql
+          - ${{ github.workspace }}/.github/workflows/set-up-test-db.sql:/docker-entrypoint-initdb.d/set-up-test-db.sql
         options: >-
           --health-cmd="mysqladmin ping"
           --health-interval=10s
