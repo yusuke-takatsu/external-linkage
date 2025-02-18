@@ -40,61 +40,67 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      
+      - name: external ls
+        run: ls
 
-      - name: Copy .env
-        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+      # - name: Copy .env
+      #   run: php -r "file_exists('.env') || copy('.env.example', '.env');"
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.2'
-          tools: composer:v2
-          coverage: pcov
+      # - name: Setup PHP
+      #   uses: shivammathur/setup-php@v2
+      #   with:
+      #     php-version: '8.2'
+      #     tools: composer:v2
+      #     coverage: pcov
 
-      - name: Cache composer
-        id: composer-cache
-        run: |
-          echo "cache-dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
-      - uses: actions/cache@v3
-        with:
-          path: $${{ steps.composer-cache.outputs.cache-dir }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-composer-
+      # - name: Cache composer
+      #   id: composer-cache
+      #   run: |
+      #     echo "cache-dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+      # - uses: actions/cache@v3
+      #   with:
+      #     path: $${{ steps.composer-cache.outputs.cache-dir }}
+      #     key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-composer-
 
-      - name: Composer install
-        run: composer install -q --no-ansi --no-interaction --no-suggest --optimize-autoloader --prefer-dist
+      # - name: Composer install
+      #   run: composer install -q --no-ansi --no-interaction --no-suggest --optimize-autoloader --prefer-dist
 
-      - name: Dump Autoload
-        run: composer dump-autoload
+      # - name: Dump Autoload
+      #   run: composer dump-autoload
 
-      - name: Generate key
-        run: php artisan key:generate
+      # - name: Generate key
+      #   run: php artisan key:generate
 
       - name: Checkout template_api_server repository
         uses: actions/checkout@v4
         with:
           repository: yusuke-takatsu/template_api_server
-          path: template_api_server
-          token: ${{ secrets.GITHUB_TOKEN }}
+          path: ./template_api_server
+          ssh-key: ${{ secrets.DEPLOY_KEY_TEMPLATE_API_SERVER }}
 
-      - name: Composer install (template_api_server)
-        run: |
-          cd template_api_server
-          composer install --no-interaction --prefer-dist
+      - name: ls for template_api_server 
+        run: ls ./template_api_server
 
-      - name: Key generate (template_api_server)
-        run: |
-          cd template_api_server
-          php artisan key:generate
+      # - name: Composer install (template_api_server)
+      #   run: |
+      #     cd template_api_server
+      #     composer install --no-interaction --prefer-dist
+
+      # - name: Key generate (template_api_server)
+      #   run: |
+      #     cd template_api_server
+      #     php artisan key:generate
         
-      - name: Migrate template_api_server
-        run: |
-          cd template_api_server
-          php artisan migrate
+      # - name: Migrate template_api_server
+      #   run: |
+      #     cd template_api_server
+      #     php artisan migrate
 
-      - name: Run database migrations
-        run: php artisan migrate
+      # - name: Run database migrations
+      #   run: php artisan migrate
 
-      - name: Run tests
-        run: php artisan test --coverage
+      # - name: Run tests
+      #   run: php artisan test --coverage
