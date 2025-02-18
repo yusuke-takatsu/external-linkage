@@ -87,6 +87,11 @@ jobs:
         run: |
           cd template-api-server
           php -r "file_exists('.env') || copy('.env.example', '.env');"
+      
+      - name: cat.env
+        run: |
+          cd template-api-server
+          cat .env
 
       - name: Key generate (template-api-server)
         run: |
