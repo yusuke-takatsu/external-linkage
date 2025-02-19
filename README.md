@@ -1,7 +1,6 @@
 # external-linkage
 
-[![Build Status](https://img.shields.io/github/actions/workflow/status/your-org/external-api-server/ci.yml)](https://github.com/your-org/external-api-server/actions)
-[![License](https://img.shields.io/github/license/your-org/external-api-server)](LICENSE)
+[![debug test](https://github.com/yusuke-takatsu/external-linkage/actions/workflows/testing.yml/badge.svg)](https://github.com/yusuke-takatsu/external-linkage/actions/workflows/testing.yml)
 
 外部APIサーバーは、外部リポジトリと連携するために設計された Laravel ベースのバックエンドサービスです。本リポジトリは、一つのドメインロジックとデータベース（「external」データベース）を扱い、外部リポジトリのマイグレーションとデータは別のデータベースで管理されます。
 これらのサービス間の統合は、共有ネットワークと明示的なデータベース設定を通じて実現されます。
